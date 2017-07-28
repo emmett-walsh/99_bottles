@@ -11,10 +11,10 @@ class Bottles
     bottle_number = BottleNumber.new(number)
     next_bottle_number = BottleNumber.new(bottle_number.successor)
 
-    "#{bottle_number.quantity.capitalize} #{bottle_number.container} of beer on the wall, " +
-    "#{bottle_number.quantity} #{bottle_number.container} of beer.\n" +
+    "#{bottle_number} of beer on the wall, ".capitalize +
+    "#{bottle_number} of beer.\n" +
     "#{bottle_number.action}, " +
-    "#{next_bottle_number.quantity} #{next_bottle_number.container} of beer on the wall.\n"
+    "#{next_bottle_number} of beer on the wall.\n"
   end
 end
 
@@ -25,19 +25,15 @@ class BottleNumber
     @number = number
   end
 
+  def to_s
+    "#{quantity} #{container}"
+  end
+
   def container
     if number == 1
       "bottle"
     else
       "bottles"
-    end
-  end
-
-  def pronoun
-    if number == 1
-      "it"
-    else
-      "one"
     end
   end
 
@@ -54,6 +50,14 @@ class BottleNumber
       "Go to the store and buy some more"
     else
       "Take #{pronoun} down and pass it around"
+    end
+  end
+
+  def pronoun
+    if number == 1
+      "it"
+    else
+      "one"
     end
   end
 
